@@ -14,8 +14,8 @@ const options = {
   };
 
 const pubsub = new RedisPubSub({
-  publisher: new Redis(options),
-  subscriber: new Redis(options),
+  publisher: new Redis(process.env.REDIS_URL || options),
+  subscriber: new Redis(process.env.REDIS_URL || options),
   connection: process.env.REDIS_URL || 'redis://localhost:6379',
   connectionListener: (err) => {
     if (err) {
