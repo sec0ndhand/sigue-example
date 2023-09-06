@@ -13,12 +13,21 @@ const theJSON = atob(process.env.FIREBASE_ADMIN_JSON || 'e30K');
 
 const serviceAccount = JSON.parse(theJSON);
 
-firebaseAdmin.initializeApp({
-  credential: firebaseAdmin.credential.cert(serviceAccount),
-  databaseURL: firebaseDbUrl,
-})
+if (firebaseDbUrl) {
+  firebaseAdmin.initializeApp({
+    credential: firebaseAdmin.credential.cert(serviceAccount),
+    databaseURL: firebaseDbUrl,
+  });
+} else {
+  console.log("FIREBASE_DB_URL not set")
+}
+
 
 const firebaseAuthSync = async (userInstance) => {
+    if (!firebaseDbUrl) {
+      console.log("FIREBASE_DB_URL not set")
+      return;
+    }
     let rtn, error, fireUser;
     const nano = nanoid();
     const { email, auth_level = 1, phone, firebase_id, name, active = true } = userInstance;
