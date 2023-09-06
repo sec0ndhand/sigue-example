@@ -17,6 +17,7 @@
     "graphql-subscriptions": "^2.0.0",
     "jsonwebtoken": "^9.0.0",
     "nanoid": "^3.3.6",
+    "pg": "^8.11.3",
     "sigue": "github:sec0ndhand/sigue#v/2.0.0",
     "sqlite3": "^5.1.6",
     "subscriptions-transport-ws": "^0.11.0"
