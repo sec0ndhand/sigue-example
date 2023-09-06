@@ -3,6 +3,9 @@ const Redis = require( 'ioredis' );
 const { PubSub } = require('graphql-subscriptions');
 const pubsubmemory = new PubSub();
 
+if (!process.env.REDIS_URL) {
+  console.log("******* REDIS_URL not set *******")
+}
 
 const options = {
     host: process.env.REDIS_DOMAIN_NAME || 'localhost',
